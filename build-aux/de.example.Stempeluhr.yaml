@@ -1,0 +1,45 @@
+app-id: de.example.Stempeluhr
+runtime: org.gnome.Platform
+runtime-version: '51'
+sdk: org.gnome.Sdk
+sdk-extensions:
+  - org.freedesktop.Sdk.Extension.rust-stable
+command: stempeluhr
+
+# Deliberately minimal: network for Kimai, display access, nothing else.
+# No filesystem access. Notifications, the Secret portal (token storage) and
+# the GlobalShortcuts portal need no permission.
+# Optional: add `--system-talk-name=org.freedesktop.login1` to also get the
+# logind wake-up signal; without it the app detects wake-ups through a
+# wall-clock jump and the network monitor.
+finish-args:
+  - --share=network
+  - --share=ipc
+  - --socket=wayland
+  - --socket=fallback-x11
+  - --device=dri
+
+build-options:
+  append-path: /usr/lib/sdk/rust-stable/bin
+  env:
+    CARGO_HOME: /run/build/stempeluhr/cargo
+
+modules:
+  - name: stempeluhr
+    buildsystem: meson
+    config-opts:
+      - --buildtype=release
+      - -Doffline=true
+    sources:
+      - type: dir
+        path: ..
+        skip:
+          - target
+          - build
+          - build-release
+          - _flatpak
+          - _repo
+          - .flatpak-builder
+          - .git
+      # Generated from Cargo.lock by build-aux/update-cargo-sources.sh (CI does it too)
+      - cargo-sources.json

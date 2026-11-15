@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+  <gresource prefix="/de/example/Stempeluhr">
+    <file compressed="true" preprocess="xml-stripblanks">ui/window.ui</file>
+    <file compressed="true" preprocess="xml-stripblanks">ui/connect-dialog.ui</file>
+    <file compressed="true" preprocess="xml-stripblanks">ui/preferences-dialog.ui</file>
+    <file compressed="true" preprocess="xml-stripblanks">ui/shortcuts-dialog.ui</file>
+    <file compressed="true" preprocess="xml-stripblanks">ui/history-page.ui</file>
+    <file compressed="true" preprocess="xml-stripblanks">ui/edit-dialog.ui</file>
+    <file compressed="true">style.css</file>
+  </gresource>
+</gresources>

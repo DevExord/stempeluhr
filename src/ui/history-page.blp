@@ -1,0 +1,89 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $StempeluhrHistoryPage: Adw.NavigationPage {
+  title: _("History");
+  tag: "history";
+
+  child: Adw.ToolbarView {
+    [top]
+    Adw.HeaderBar {}
+
+    content: Stack stack {
+      transition-type: crossfade;
+
+      StackPage {
+        name: "loading";
+
+        child: Adw.Spinner {
+          halign: center;
+          valign: center;
+          width-request: 32;
+          height-request: 32;
+
+          accessibility {
+            label: _("Loading");
+          }
+        };
+      }
+
+      StackPage {
+        name: "empty";
+
+        child: Adw.StatusPage {
+          icon-name: "document-open-recent-symbolic";
+          title: _("No Entries Yet");
+          description: _("Finished time entries from the last 30 days appear here.");
+
+          styles [
+            "compact",
+          ]
+        };
+      }
+
+      StackPage {
+        name: "error";
+
+        child: Adw.StatusPage error_page {
+          icon-name: "network-offline-symbolic";
+          title: _("Couldn’t Load History");
+
+          styles [
+            "compact",
+          ]
+
+          child: Button retry_button {
+            label: _("Try Again");
+            halign: center;
+
+            styles [
+              "pill",
+            ]
+          };
+        };
+      }
+
+      StackPage {
+        name: "list";
+
+        child: ScrolledWindow {
+          hscrollbar-policy: never;
+
+          Adw.Clamp {
+            maximum-size: 460;
+            tightening-threshold: 360;
+
+            Box list_box {
+              orientation: vertical;
+              spacing: 18;
+              margin-top: 6;
+              margin-bottom: 18;
+              margin-start: 12;
+              margin-end: 12;
+            }
+          }
+        };
+      }
+    };
+  };
+}

@@ -1,0 +1,20 @@
+[Desktop Entry]
+Name=Stempeluhr
+Comment=Start and stop Kimai time tracking
+Exec=stempeluhr
+Icon=@app_id@
+Terminal=false
+Type=Application
+Categories=GNOME;GTK;Office;ProjectManagement;
+Keywords=Kimai;time;timesheet;tracking;clock;
+StartupNotify=true
+DBusActivatable=true
+Actions=start;stop;
+
+[Desktop Action start]
+Name=Start Tracking
+Exec=gapplication action @app_id@ start
+
+[Desktop Action stop]
+Name=Stop Tracking
+Exec=gapplication action @app_id@ stop

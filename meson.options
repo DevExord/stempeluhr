@@ -1,0 +1,6 @@
+option(
+  'offline',
+  type: 'boolean',
+  value: false,
+  description: 'Build Cargo dependencies offline (used by the Flatpak build)',
+)

@@ -1,0 +1,67 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $StempeluhrConnectDialog: Adw.Dialog {
+  title: _("Connect to Kimai");
+  content-width: 440;
+  default-widget: connect_button;
+
+  child: Adw.ToolbarView {
+    [top]
+    Adw.HeaderBar {}
+
+    content: ScrolledWindow {
+      hscrollbar-policy: never;
+      propagate-natural-height: true;
+
+      Box {
+        orientation: vertical;
+        spacing: 18;
+        margin-top: 6;
+        margin-bottom: 24;
+        margin-start: 18;
+        margin-end: 18;
+
+        Label {
+          label: _("Enter the address of your Kimai server and an API token. You can create a token in Kimai under your profile, in the API section.");
+          wrap: true;
+          xalign: 0;
+
+          styles [
+            "dim-label",
+          ]
+        }
+
+        Adw.PreferencesGroup {
+          Adw.EntryRow url_row {
+            title: _("Server address");
+            input-purpose: url;
+            activates-default: false;
+          }
+
+          Adw.PasswordEntryRow token_row {
+            title: _("API token");
+            activates-default: true;
+          }
+        }
+
+        Label status_label {
+          wrap: true;
+          xalign: 0;
+          visible: false;
+          selectable: true;
+        }
+
+        Button connect_button {
+          label: _("Connect");
+          halign: center;
+
+          styles [
+            "suggested-action",
+            "pill",
+          ]
+        }
+      }
+    };
+  };
+}

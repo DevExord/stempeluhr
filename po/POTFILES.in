@@ -1,0 +1,17 @@
+data/de.example.Stempeluhr.desktop.in.in
+data/de.example.Stempeluhr.metainfo.xml.in
+src/application.rs
+src/connect_dialog.rs
+src/messages.rs
+src/format.rs
+src/preferences.rs
+src/shortcuts.rs
+src/window.rs
+src/ui/window.blp
+src/ui/connect-dialog.blp
+src/ui/preferences-dialog.blp
+src/ui/shortcuts-dialog.blp
+src/history.rs
+src/edit_dialog.rs
+src/ui/history-page.blp
+src/ui/edit-dialog.blp

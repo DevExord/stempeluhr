@@ -1,0 +1,545 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $StempeluhrWindow: Adw.ApplicationWindow {
+  title: _("Stempeluhr");
+  default-width: 380;
+  default-height: 340;
+  width-request: 360;
+  height-request: 280;
+
+  styles [
+    "stempel-root",
+  ]
+
+  content: Adw.ToastOverlay toast_overlay {
+    child: Adw.NavigationView nav_view {
+      Adw.NavigationPage {
+        title: _("Stempeluhr");
+        tag: "main";
+
+        child: Adw.ToolbarView {
+      [top]
+      Adw.HeaderBar {
+        // Three buttons on the left leave no room for a title.
+        title-widget: Adw.WindowTitle {
+          title: "";
+        };
+
+        [start]
+        Button refresh_button {
+          icon-name: "view-refresh-symbolic";
+          tooltip-text: _("Refresh");
+          action-name: "app.refresh";
+          accessibility {
+            label: _("Refresh");
+          }
+        }
+
+        [start]
+        Button history_button {
+          icon-name: "view-list-symbolic";
+          tooltip-text: _("History");
+          action-name: "app.history";
+          visible: false;
+
+          accessibility {
+            label: _("History");
+          }
+        }
+
+        [start]
+        MenuButton recent_button {
+          icon-name: "document-open-recent-symbolic";
+          tooltip-text: _("Recent");
+          visible: false;
+          popover: Popover {
+            child: ScrolledWindow {
+              hscrollbar-policy: never;
+              propagate-natural-height: true;
+              max-content-height: 260;
+              propagate-natural-width: true;
+
+              ListBox recent_list {
+                selection-mode: none;
+
+                styles [
+                  "navigation-sidebar",
+                ]
+              }
+            };
+          };
+
+          accessibility {
+            label: _("Recent");
+          }
+        }
+
+        [end]
+        MenuButton {
+          icon-name: "open-menu-symbolic";
+          menu-model: primary_menu;
+          primary: true;
+          tooltip-text: _("Main Menu");
+          accessibility {
+            label: _("Main Menu");
+          }
+        }
+      }
+
+      [top]
+      Adw.Banner banner {
+        button-label: _("Retry");
+        action-name: "app.refresh";
+      }
+
+      content: Stack main_stack {
+        transition-type: crossfade;
+        hhomogeneous: false;
+        vhomogeneous: false;
+
+        StackPage {
+          name: "loading";
+          child: Adw.Spinner {
+            halign: center;
+            valign: center;
+            width-request: 32;
+            height-request: 32;
+            accessibility {
+              label: _("Loading");
+            }
+          };
+        }
+
+        StackPage {
+          name: "welcome";
+          child: ScrolledWindow {
+            hscrollbar-policy: never;
+
+            Adw.Clamp {
+              maximum-size: 340;
+
+              Box {
+                orientation: vertical;
+                valign: center;
+                spacing: 10;
+                margin-top: 12;
+                margin-bottom: 20;
+                margin-start: 24;
+                margin-end: 24;
+
+                Image {
+                  icon-name: "de.example.Stempeluhr";
+                  pixel-size: 72;
+                  margin-bottom: 4;
+                  accessible-role: presentation;
+                }
+
+                Label {
+                  label: _("Welcome");
+                  wrap: true;
+                  justify: center;
+
+                  styles [
+                    "title-2",
+                  ]
+                }
+
+                Label {
+                  label: _("Connect your Kimai account to start and stop time tracking from here.");
+                  wrap: true;
+                  justify: center;
+
+                  styles [
+                    "dim-label",
+                  ]
+                }
+
+                Button {
+                  label: _("Connect to Kimai");
+                  halign: center;
+                  margin-top: 8;
+                  action-name: "app.connect";
+
+                  styles [
+                    "suggested-action",
+                    "pill",
+                  ]
+                }
+              }
+            }
+          };
+        }
+
+        StackPage {
+          name: "unauthorized";
+          child: ScrolledWindow {
+            hscrollbar-policy: never;
+
+            Adw.Clamp {
+              maximum-size: 340;
+
+              Box {
+                orientation: vertical;
+                valign: center;
+                spacing: 10;
+                margin-top: 12;
+                margin-bottom: 20;
+                margin-start: 24;
+                margin-end: 24;
+
+                Image {
+                  icon-name: "dialog-password-symbolic";
+                  pixel-size: 48;
+                  margin-bottom: 4;
+                  accessible-role: presentation;
+                }
+
+                Label {
+                  label: _("Sign-in Required");
+                  wrap: true;
+                  justify: center;
+
+                  styles [
+                    "title-2",
+                  ]
+                }
+
+                Label {
+                  label: _("Kimai rejected the access token. It may have expired or been revoked.");
+                  wrap: true;
+                  justify: center;
+
+                  styles [
+                    "dim-label",
+                  ]
+                }
+
+                Button {
+                  label: _("Sign In Again");
+                  halign: center;
+                  margin-top: 8;
+                  action-name: "app.connect";
+
+                  styles [
+                    "suggested-action",
+                    "pill",
+                  ]
+                }
+              }
+            }
+          };
+        }
+
+        StackPage {
+          name: "error";
+          child: ScrolledWindow {
+            hscrollbar-policy: never;
+
+            Adw.Clamp {
+              maximum-size: 340;
+
+              Box {
+                orientation: vertical;
+                valign: center;
+                spacing: 10;
+                margin-top: 12;
+                margin-bottom: 20;
+                margin-start: 24;
+                margin-end: 24;
+
+                Image {
+                  icon-name: "network-offline-symbolic";
+                  pixel-size: 48;
+                  margin-bottom: 4;
+                  accessible-role: presentation;
+                }
+
+                Label {
+                  label: _("Can’t Reach Kimai");
+                  wrap: true;
+                  justify: center;
+
+                  styles [
+                    "title-2",
+                  ]
+                }
+
+                Label error_label {
+                  label: "";
+                  wrap: true;
+                  justify: center;
+
+                  styles [
+                    "dim-label",
+                  ]
+                }
+
+                Button {
+                  label: _("Try Again");
+                  halign: center;
+                  margin-top: 8;
+                  action-name: "app.refresh";
+
+                  styles [
+                    "pill",
+                  ]
+                }
+              }
+            }
+          };
+        }
+
+        StackPage {
+          name: "tracker";
+          child: ScrolledWindow {
+            hscrollbar-policy: never;
+
+            Adw.Clamp {
+              maximum-size: 400;
+              tightening-threshold: 340;
+
+              Stack tracker_stack {
+                transition-type: crossfade;
+                transition-duration: 300;
+                vhomogeneous: false;
+                valign: center;
+                margin-start: 6;
+                margin-end: 6;
+
+                StackPage {
+                  name: "idle";
+                  child: Box {
+                    orientation: vertical;
+                    spacing: 18;
+                    margin-top: 14;
+                    margin-bottom: 14;
+                    margin-start: 14;
+                    margin-end: 14;
+
+                    Button start_button {
+                      halign: center;
+                      icon-name: "media-playback-start-symbolic";
+                      action-name: "app.start";
+                      tooltip-text: _("Start tracking");
+
+                      accessibility {
+                        label: _("Start tracking");
+                      }
+
+                      styles [
+                        "circular",
+                        "suggested-action",
+                        "start-button",
+                      ]
+                    }
+
+                    Box selection_card {
+                      orientation: vertical;
+
+                      styles [
+                        "card",
+                        "selection-card",
+                      ]
+
+                      DropDown project_dropdown {
+                        enable-search: true;
+                        tooltip-text: _("Project");
+
+                        accessibility {
+                          label: _("Project");
+                        }
+
+                        styles [
+                          "flat",
+                        ]
+                      }
+
+                      Separator {}
+
+                      DropDown activity_dropdown {
+                        enable-search: true;
+                        tooltip-text: _("Activity");
+
+                        accessibility {
+                          label: _("Activity");
+                        }
+
+                        styles [
+                          "flat",
+                        ]
+                      }
+
+                      Separator {}
+
+                      Entry description_entry {
+                        placeholder-text: _("Description (optional)");
+                        has-frame: false;
+                        enable-emoji-completion: false;
+
+                        accessibility {
+                          label: _("Description (optional)");
+                        }
+                      }
+                    }
+                  };
+                }
+
+                StackPage {
+                  name: "running";
+                  child: Box {
+                    orientation: vertical;
+                    spacing: 4;
+                    halign: center;
+                    margin-top: 8;
+                    margin-bottom: 14;
+                    margin-start: 14;
+                    margin-end: 14;
+
+                    Overlay {
+                      halign: center;
+
+                      DrawingArea ring {
+                        content-width: 148;
+                        content-height: 148;
+                        accessible-role: presentation;
+                      }
+
+                      [overlay]
+                      Box {
+                        orientation: vertical;
+                        halign: center;
+                        valign: center;
+
+                        Label timer_label {
+                          label: "0:00:00";
+                          accessible-role: timer;
+
+                          styles [
+                            "timer",
+                            "numeric",
+                          ]
+                        }
+
+                        Box {
+                          halign: center;
+                          spacing: 4;
+
+                          Image done_icon {
+                            icon-name: "object-select-symbolic";
+                            pixel-size: 14;
+                            visible: false;
+                            accessible-role: presentation;
+
+                            styles [
+                              "success",
+                            ]
+                          }
+
+                          Label since_label {
+                            styles [
+                              "caption",
+                              "dim-label",
+                            ]
+                          }
+                        }
+                      }
+                    }
+
+                    Box {
+                      halign: center;
+                      spacing: 8;
+                      margin-top: 10;
+
+                      Box org_dot {
+                        valign: center;
+                        visible: false;
+                        accessible-role: presentation;
+
+                        styles [
+                          "org-dot",
+                        ]
+                      }
+
+                      Label project_label {
+                        justify: center;
+                        wrap: true;
+                        wrap-mode: word_char;
+
+                        styles [
+                          "title-4",
+                        ]
+                      }
+                    }
+
+                    Label activity_label {
+                      justify: center;
+                      wrap: true;
+                      wrap-mode: word_char;
+                    }
+
+                    Label description_label {
+                      justify: center;
+                      wrap: true;
+                      wrap-mode: word_char;
+                      visible: false;
+
+                      styles [
+                        "caption",
+                        "dim-label",
+                      ]
+                    }
+
+                    Label others_label {
+                      justify: center;
+                      wrap: true;
+                      visible: false;
+
+                      styles [
+                        "caption",
+                        "dim-label",
+                      ]
+                    }
+
+                    Button stop_button {
+                      label: _("Stop");
+                      halign: center;
+                      margin-top: 10;
+                      action-name: "app.stop";
+
+                      styles [
+                        "destructive-action",
+                        "pill",
+                      ]
+                    }
+                  };
+                }
+              }
+            }
+          };
+        }
+      };
+        };
+      }
+    };
+  };
+}
+
+menu primary_menu {
+  section {
+    item {
+      label: _("_Preferences");
+      action: "app.preferences";
+    }
+
+    item {
+      label: _("_Keyboard Shortcuts");
+      action: "app.shortcuts";
+    }
+
+    item {
+      label: _("_About Stempeluhr");
+      action: "app.about";
+    }
+  }
+}

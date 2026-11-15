@@ -1,0 +1,88 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $StempeluhrEditDialog: Adw.Dialog {
+  title: _("Edit Entry");
+  content-width: 420;
+  default-widget: save_button;
+
+  child: Adw.ToolbarView {
+    [top]
+    Adw.HeaderBar {
+      [end]
+      Button save_button {
+        label: _("Save");
+        sensitive: false;
+
+        styles [
+          "suggested-action",
+        ]
+      }
+    }
+
+    content: ScrolledWindow {
+      hscrollbar-policy: never;
+      propagate-natural-height: true;
+
+      Box {
+        orientation: vertical;
+        spacing: 18;
+        margin-top: 6;
+        margin-bottom: 24;
+        margin-start: 14;
+        margin-end: 14;
+
+        Adw.PreferencesGroup {
+          Adw.ComboRow project_row {
+            title: _("Project");
+            enable-search: true;
+            sensitive: false;
+          }
+
+          Adw.ComboRow activity_row {
+            title: _("Activity");
+            enable-search: true;
+            sensitive: false;
+          }
+
+          Adw.EntryRow description_row {
+            title: _("Description");
+          }
+        }
+
+        Adw.PreferencesGroup time_group {
+          Adw.EntryRow start_row {
+            title: _("Start (hh:mm)");
+            input-purpose: digits;
+          }
+
+          Adw.EntryRow end_row {
+            title: _("End (hh:mm)");
+            input-purpose: digits;
+          }
+        }
+
+        Label status_label {
+          wrap: true;
+          xalign: 0;
+          visible: false;
+          selectable: true;
+
+          styles [
+            "error",
+          ]
+        }
+
+        Button delete_button {
+          label: _("Delete Entry…");
+          halign: center;
+
+          styles [
+            "destructive-action",
+            "pill",
+          ]
+        }
+      }
+    };
+  };
+}

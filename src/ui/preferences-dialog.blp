@@ -1,0 +1,57 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $StempeluhrPreferencesDialog: Adw.PreferencesDialog {
+  content-width: 480;
+
+  Adw.PreferencesPage {
+    Adw.PreferencesGroup {
+      title: _("Connection");
+
+      Adw.ActionRow server_row {
+        title: _("Server");
+        subtitle-selectable: true;
+        activatable-widget: change_button;
+
+        [suffix]
+        Button change_button {
+          label: _("Change…");
+          valign: center;
+        }
+      }
+
+      Adw.ButtonRow disconnect_row {
+        title: _("Disconnect");
+
+        styles [
+          "destructive-action",
+        ]
+      }
+    }
+
+    Adw.PreferencesGroup {
+      title: _("Start Action");
+      description: _("What happens when tracking is started with a keyboard shortcut or from outside the window.");
+
+      Adw.ComboRow start_behavior_row {
+        title: _("Behavior");
+        model: StringList {
+          strings [
+            _("Use last project and activity"),
+            _("Open the window"),
+          ]
+        };
+      }
+    }
+
+    Adw.PreferencesGroup {
+      title: _("Global Shortcut");
+      description: _("Works only while the app is running. The system asks you to confirm and choose the keys.");
+
+      Adw.SwitchRow global_shortcut_row {
+        title: _("Toggle Tracking from Anywhere");
+        subtitle: _("Uses the GlobalShortcuts portal");
+      }
+    }
+  }
+}

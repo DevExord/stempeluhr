@@ -1,0 +1,12 @@
+/target
+/build
+/builddir
+/.flatpak-builder
+/repo
+*.flatpak
+build-release
+build-aux/cargo-sources.json
+_flatpak
+_repo
+stempeluhr.flatpak
+target-sdk
