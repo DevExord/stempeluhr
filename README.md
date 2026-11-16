@@ -12,6 +12,11 @@ you can fix or delete an entry. No reports, no statistics.
 - English source strings, German translation through gettext
 - GPL-3.0-or-later
 
+> **macOS:** this fork adds a native menu-bar app with the same core (start /
+> stop / current state) in [`macos/`](macos/). It is the Mac equivalent of a
+> "widget": a stopwatch in your menu bar with a Start/Stop popover. See
+> [`macos/README.md`](macos/README.md).
+
 ## Design in one paragraph
 
 **Kimai is the single source of truth.** The window only ever shows what the
