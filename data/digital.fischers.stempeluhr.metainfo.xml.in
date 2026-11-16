@@ -64,6 +64,11 @@
     <binary>stempeluhr</binary>
   </provides>
   <releases>
+    <release version="0.2.0" date="2026-11-16">
+      <description>
+        <p>New app ID digital.fischers.stempeluhr, screenshots and a complete app listing.</p>
+      </description>
+    </release>
     <release version="0.1.0" date="2026-11-15">
       <description>
         <p>First release.</p>

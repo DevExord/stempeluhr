@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: stempeluhr\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-16 10:19+0100\n"
+"POT-Creation-Date: 2026-11-16 11:25+0100\n"
 "PO-Revision-Date: 2026-11-15 22:30+0100\n"
 "Last-Translator: The Stempeluhr authors\n"
 "Language-Team: German\n"
@@ -101,15 +101,23 @@ msgstr "Die Erfassung läuft: Projekt, Tätigkeit und vergangene Zeit"
 
 #: data/digital.fischers.stempeluhr.metainfo.xml.in:46
 msgid "Ready to start with a project, an activity and a description"
-msgstr "Bereit zum Starten mit Projekt, Tätigkeit und Beschreibung"
-"Erfassung mit Projekt, Tätigkeit und optionaler Beschreibung starten und "
-"stoppen"
+msgstr ""
+"Bereit zum Starten mit Projekt, Tätigkeit und BeschreibungErfassung mit "
+"Projekt, Tätigkeit und optionaler Beschreibung starten und stoppen"
 
 #: data/digital.fischers.stempeluhr.metainfo.xml.in:50
 msgid "The history of the last 30 days, grouped by day"
 msgstr "Der Verlauf der letzten 30 Tage, nach Tagen gruppiert"
 
 #: data/digital.fischers.stempeluhr.metainfo.xml.in:69
+msgid ""
+"New app ID digital.fischers.stempeluhr, screenshots and a complete app "
+"listing."
+msgstr ""
+"Neue App-ID digital.fischers.stempeluhr, Screenshots und ein vollständiger "
+"App-Eintrag."
+
+#: data/digital.fischers.stempeluhr.metainfo.xml.in:74
 msgid "First release."
 msgstr "Erste Veröffentlichung."
 
