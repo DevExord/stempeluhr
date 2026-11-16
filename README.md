@@ -1,6 +1,6 @@
 # Stempeluhr
 
-> Moin! Wie man sicherlich sieht, ist die App völlig gevibecoded. Es handelt sich hier also nicht um maintainte und zugängliche Open-Source-Software für die allgemeine Nutzung, sondern nur um ein kleines, privates Tool, das ich basteln gelassen haben, um gezielt ein Problem für mich zu lösen und in meinen Workflow zu passen. Wenn es das auch für dich tut, feel free, die App zu installieren, aber erwarte nicht zu viel :)
+> Moin! Wie man sicherlich sieht, ist die App völlig gevibecoded. Es handelt sich hier also nicht um maintainte und zugängliche Open-Source-Software für die allgemeine Nutzung, sondern nur um ein kleines Tool, das ich basteln gelassen habe, um in meinen eigenen Workflow zu passen. Wenn es das auch für dich tut, feel free, die App zu installieren, aber erwarte nicht zu viel :)
 
 A small, quiet GNOME app that starts and stops time tracking in
 [Kimai](https://www.kimai.org/). Plus a plain history of the last 30 days where
