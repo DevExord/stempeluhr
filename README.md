@@ -1,14 +1,16 @@
 # Stempeluhr
 
+> Moin! Wie man sicherlich sieht, ist die App völlig gevibecoded. Es handelt sich hier also nicht um maintainte und zugängliche Open-Source-Software für die allgemeine Nutzung, sondern nur um ein kleines, privates Tool, das ich basteln gelassen haben, um gezielt ein Problem für mich zu lösen und in meinen Workflow zu passen. Wenn es das auch für dich tut, feel free, die App zu installieren, aber erwarte nicht zu viel :)
+
 A small, quiet GNOME app that starts and stops time tracking in
 [Kimai](https://www.kimai.org/). Plus a plain history of the last 30 days where
 you can fix or delete an entry. No reports, no statistics.
 
-* Rust, GTK 4, libadwaita, Blueprint, Meson + Cargo, packaged as a Flatpak
-* English source strings, German translation through gettext
-* GPL-3.0-or-later
+- Rust, GTK 4, libadwaita, Blueprint, Meson + Cargo, packaged as a Flatpak
+- English source strings, German translation through gettext
+- GPL-3.0-or-later
 
-> **Placeholders:** the app name *Stempeluhr* and the app ID
+> **Placeholders:** the app name _Stempeluhr_ and the app ID
 > `de.example.Stempeluhr` are placeholders. To rename, replace the ID in
 > `meson.build`, `src/config.rs`, `src/resources.gresource.xml`,
 > `data/*` (file names and contents), `src/ui/*.blp` (`de.example.Stempeluhr`
@@ -34,14 +36,14 @@ The only windowless runs are short D-Bus activations (notification button,
 
 ## Layout
 
-| Path | What |
-|---|---|
-| `core/` | GTK-free crate: `kimai` (API client), `state` (state machine), `engine` (sync logic). Tested against a mock server with `wiremock`. |
-| `src/` | The GTK app: window, dialogs, notification, portals |
-| `src/ui/*.blp` | Blueprint UI (composite templates) |
-| `data/` | desktop file, metainfo, GSettings schema, D-Bus service, icons |
-| `po/` | gettext (`de`) |
-| `build-aux/` | `mock-kimai.py` (fake server for trying things), helper scripts |
+| Path           | What                                                                                                                                |
+| -------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| `core/`        | GTK-free crate: `kimai` (API client), `state` (state machine), `engine` (sync logic). Tested against a mock server with `wiremock`. |
+| `src/`         | The GTK app: window, dialogs, notification, portals                                                                                 |
+| `src/ui/*.blp` | Blueprint UI (composite templates)                                                                                                  |
+| `data/`        | desktop file, metainfo, GSettings schema, D-Bus service, icons                                                                      |
+| `po/`          | gettext (`de`)                                                                                                                      |
+| `build-aux/`   | `mock-kimai.py` (fake server for trying things), helper scripts                                                                     |
 
 ## API token
 
@@ -112,11 +114,11 @@ user. Entries that span midnight keep their original dates when edited.
 
 ## Actions and shortcuts
 
-| Action | Effect |
-|---|---|
-| `app.start` | Start with the window's selection, or the last used project/activity (see preferences) |
-| `app.stop` | Stop what is shown / what the server says runs |
-| `app.toggle` | Stop if running, otherwise start |
+| Action       | Effect                                                                                 |
+| ------------ | -------------------------------------------------------------------------------------- |
+| `app.start`  | Start with the window's selection, or the last used project/activity (see preferences) |
+| `app.stop`   | Stop what is shown / what the server says runs                                         |
+| `app.toggle` | Stop if running, otherwise start                                                       |
 
 All run without a window and check the server first. Inside the window:
 `Ctrl+Return` toggles, `Ctrl+R`/`F5` refreshes, `Ctrl+H` opens the history, `Ctrl+,` opens preferences,
