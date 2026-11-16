@@ -2,6 +2,8 @@
 
 > Moin! Wie man sicherlich sieht, ist die App völlig gevibecoded. Es handelt sich hier also nicht um maintainte und zugängliche Open-Source-Software für die allgemeine Nutzung, sondern nur um ein kleines Tool, das ich basteln gelassen habe, um in meinen eigenen Workflow zu passen. Wenn es das auch für dich tut, feel free, die App zu installieren, aber erwarte nicht zu viel :)
 
+<p align="center"><img src="data/screenshots/running.png" alt="Stempeluhr while tracking" width="380"></p>
+
 A small, quiet GNOME app that starts and stops time tracking in
 [Kimai](https://www.kimai.org/). Plus a plain history of the last 30 days where
 you can fix or delete an entry. No reports, no statistics.
@@ -9,12 +11,6 @@ you can fix or delete an entry. No reports, no statistics.
 - Rust, GTK 4, libadwaita, Blueprint, Meson + Cargo, packaged as a Flatpak
 - English source strings, German translation through gettext
 - GPL-3.0-or-later
-
-> **Placeholders:** the app name _Stempeluhr_ and the app ID
-> `de.example.Stempeluhr` are placeholders. To rename, replace the ID in
-> `meson.build`, `src/config.rs`, `src/resources.gresource.xml`,
-> `data/*` (file names and contents), `src/ui/*.blp` (`de.example.Stempeluhr`
-> icon name), the Flatpak manifest and `src/application.rs` (`RESOURCE_PREFIX`).
 
 ## Design in one paragraph
 
@@ -58,6 +54,16 @@ in logs. Revoking the token in Kimai moves the app to "Sign-in required".
 
 ### Flatpak
 
+Download `stempeluhr.flatpak` from the latest
+[release](https://github.com/Importantus/stempeluhr/releases/latest) and install it:
+
+```sh
+flatpak install --user stempeluhr.flatpak
+flatpak run digital.fischers.stempeluhr
+```
+
+#### Build it yourself
+
 Local build and install for the current user (no crate list needed; the build
 may use the network):
 
@@ -65,13 +71,13 @@ may use the network):
 flatpak install flathub org.gnome.Platform//51 org.gnome.Sdk//51 \
     org.freedesktop.Sdk.Extension.rust-stable//26.08
 build-aux/flatpak-install.sh        # uses flatpak-builder, or the copy inside GNOME Builder
-flatpak run de.example.Stempeluhr
+flatpak run digital.fischers.stempeluhr
 ```
 
-Reproducible/offline build (what CI does, see `.github/workflows/flatpak.yml`):
+Reproducible/offline build (what the release workflow does, see `.github/workflows/release.yml`):
 `build-aux/update-cargo-sources.sh` (needs `flatpak-cargo-generator.py`) writes
 `build-aux/cargo-sources.json`, then
-`flatpak-builder --user --install --force-clean _flatpak build-aux/de.example.Stempeluhr.yaml`.
+`flatpak-builder --user --install --force-clean _flatpak build-aux/digital.fischers.stempeluhr.yaml`.
 
 Finish args are minimal: network, IPC, Wayland/X11 fallback, DRI. No file
 system access. Optionally add `--system-talk-name=org.freedesktop.login1` to
@@ -80,7 +86,7 @@ wall-clock jump and the network monitor.
 
 ### GNOME Builder
 
-Open the folder, pick `build-aux/de.example.Stempeluhr.local.yaml`, run.
+Open the folder, pick `build-aux/digital.fischers.stempeluhr.local.yaml`, run.
 
 ### Plain Meson (development)
 
@@ -129,27 +135,23 @@ All run without a window and check the server first. Inside the window:
 Settings → Keyboard → Custom Shortcuts → add one with the command
 
 ```sh
-gapplication action de.example.Stempeluhr toggle
+gapplication action digital.fischers.stempeluhr toggle
 ```
 
-(for the Flatpak: `flatpak run --command=gapplication de.example.Stempeluhr action de.example.Stempeluhr toggle`,
-or simply `flatpak run de.example.Stempeluhr` plus the D-Bus call above, since
+(for the Flatpak: `flatpak run --command=gapplication digital.fischers.stempeluhr action digital.fischers.stempeluhr toggle`,
+or simply `flatpak run digital.fischers.stempeluhr` plus the D-Bus call above, since
 the app is D-Bus activatable). Alternatively enable the optional **global
 shortcut** in the preferences (GlobalShortcuts portal); that only works while
 the app is running.
 
+## Releases
+
+Publishing a GitHub release triggers `.github/workflows/release.yml`, which
+builds the Flatpak and attaches `stempeluhr.flatpak` to it. Nothing runs on
+ordinary pushes.
+
 ## Status
 
-Verified here: core tests (47, including the sync/conflict scenarios), clippy
-and rustfmt clean, `meson test` (desktop file, schema, metainfo), build and run
-against the mock server including headless D-Bus activation.
-
-Not verified in this environment: `flatpak-builder` build, `flatpak-builder-lint`
-(neither tool was available), and behaviour against a real Kimai instance —
-the OpenAPI document of an instance (`<server>/api/doc`) requires a login, so the
-client follows the documented API and parses tolerantly (ids or expanded objects,
-PHP-style `+0100` offsets). Please run it once against your instance and check
-especially: the `begin` format accepted by `POST /api/timesheets` (sent in the
-user's time zone from `/api/users/me`), and the shape of `/api/timesheets/recent`.
-
-Phase 2 (GNOME Shell search provider) is not implemented.
+Phase 2 (GNOME Shell search provider) is not implemented. The client follows
+the documented Kimai API and parses tolerantly (ids or expanded objects,
+PHP-style `+0100` offsets).

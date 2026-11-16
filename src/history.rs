@@ -21,7 +21,7 @@ mod imp {
     use super::*;
 
     #[derive(CompositeTemplate, Default)]
-    #[template(resource = "/de/example/Stempeluhr/ui/history-page.ui")]
+    #[template(resource = "/digital/fischers/stempeluhr/ui/history-page.ui")]
     pub struct HistoryPage {
         #[template_child]
         pub stack: TemplateChild<gtk::Stack>,

@@ -10,7 +10,7 @@ mod imp {
     use super::*;
 
     #[derive(CompositeTemplate, Default)]
-    #[template(resource = "/de/example/Stempeluhr/ui/preferences-dialog.ui")]
+    #[template(resource = "/digital/fischers/stempeluhr/ui/preferences-dialog.ui")]
     pub struct PreferencesDialog {
         #[template_child]
         pub server_row: TemplateChild<adw::ActionRow>,

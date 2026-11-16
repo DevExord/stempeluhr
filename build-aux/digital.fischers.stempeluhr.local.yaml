@@ -1,6 +1,6 @@
 # Local build: the build may use the network, so no cargo-sources.json is needed.
 # Used by build-aux/flatpak-install.sh
-app-id: de.example.Stempeluhr
+app-id: digital.fischers.stempeluhr
 runtime: org.gnome.Platform
 runtime-version: '51'
 sdk: org.gnome.Sdk

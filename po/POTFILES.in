@@ -1,5 +1,5 @@
-data/de.example.Stempeluhr.desktop.in.in
-data/de.example.Stempeluhr.metainfo.xml.in
+data/digital.fischers.stempeluhr.desktop.in.in
+data/digital.fischers.stempeluhr.metainfo.xml.in
 src/application.rs
 src/connect_dialog.rs
 src/messages.rs

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: stempeluhr\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-15 21:32+0100\n"
+"POT-Creation-Date: 2026-11-16 10:19+0100\n"
 "PO-Revision-Date: 2026-11-15 22:30+0100\n"
 "Last-Translator: The Stempeluhr authors\n"
 "Language-Team: German\n"
@@ -15,91 +15,138 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: data/de.example.Stempeluhr.desktop.in.in:2
-#: data/de.example.Stempeluhr.metainfo.xml.in:6 src/ui/window.blp:5
+#: data/digital.fischers.stempeluhr.desktop.in.in:2
+#: data/digital.fischers.stempeluhr.metainfo.xml.in:6 src/ui/window.blp:5
 #: src/ui/window.blp:18
 msgid "Stempeluhr"
 msgstr "Stempeluhr"
 
-#: data/de.example.Stempeluhr.desktop.in.in:3
-#: data/de.example.Stempeluhr.metainfo.xml.in:7
+#: data/digital.fischers.stempeluhr.desktop.in.in:3
+#: data/digital.fischers.stempeluhr.metainfo.xml.in:7
 msgid "Start and stop Kimai time tracking"
 msgstr "Kimai-Zeiterfassung starten und stoppen"
 
-#: data/de.example.Stempeluhr.desktop.in.in:9
+#: data/digital.fischers.stempeluhr.desktop.in.in:9
 msgid "Kimai;time;timesheet;tracking;clock;"
 msgstr "Kimai;Zeit;Zeiterfassung;Stempeln;Uhr;Arbeitszeit;"
 
-#: data/de.example.Stempeluhr.desktop.in.in:15
+#: data/digital.fischers.stempeluhr.desktop.in.in:15
 msgid "Start Tracking"
 msgstr "Erfassung starten"
 
-#: data/de.example.Stempeluhr.desktop.in.in:19
+#: data/digital.fischers.stempeluhr.desktop.in.in:19
 msgid "Stop Tracking"
 msgstr "Erfassung stoppen"
 
-#: data/de.example.Stempeluhr.metainfo.xml.in:9 src/application.rs:696
-msgid "The Stempeluhr authors"
-msgstr "Die Stempeluhr-Autoren"
+#: data/digital.fischers.stempeluhr.metainfo.xml.in:16
+msgid ""
+"Stempeluhr is a small companion for Kimai. It starts and stops time tracking "
+"and shows what is running right now, nothing more."
+msgstr ""
+"Stempeluhr ist ein kleiner Begleiter für Kimai. Die App startet und stoppt "
+"die Zeiterfassung und zeigt, was gerade läuft – mehr nicht."
 
-#: data/de.example.Stempeluhr.metainfo.xml.in:12
-msgid "Stempeluhr is a small companion for Kimai. It starts and stops time tracking and shows what is running right now, nothing more."
-msgstr "Stempeluhr ist ein kleiner Begleiter für Kimai. Die App startet und stoppt die Zeiterfassung und zeigt, was gerade läuft – mehr nicht."
+#: data/digital.fischers.stempeluhr.metainfo.xml.in:17
+msgid ""
+"Kimai is always the source of truth: when tracking is started or stopped "
+"somewhere else, the app notices and never shows an outdated state. If the "
+"server can’t be reached, the last known state is clearly marked as "
+"unconfirmed."
+msgstr ""
+"Kimai ist immer die maßgebliche Quelle: Wird die Erfassung woanders "
+"gestartet oder gestoppt, bemerkt die App das und zeigt nie einen veralteten "
+"Zustand. Ist der Server nicht erreichbar, wird der zuletzt bekannte Zustand "
+"deutlich als unbestätigt markiert."
 
-#: data/de.example.Stempeluhr.metainfo.xml.in:13
-msgid "Kimai is always the source of truth: when tracking is started or stopped somewhere else, the app notices and never shows an outdated state. If the server can’t be reached, the last known state is clearly marked as unconfirmed."
-msgstr "Kimai ist immer die maßgebliche Quelle: Wird die Erfassung woanders gestartet oder gestoppt, bemerkt die App das und zeigt nie einen veralteten Zustand. Ist der Server nicht erreichbar, wird der zuletzt bekannte Zustand deutlich als unbestätigt markiert."
+#: data/digital.fischers.stempeluhr.metainfo.xml.in:19
+msgid ""
+"Start and stop tracking with a project, an activity and an optional "
+"description"
+msgstr ""
+"Erfassung mit Projekt, Tätigkeit und optionaler Beschreibung starten und "
+"stoppen"
 
-#: data/de.example.Stempeluhr.metainfo.xml.in:15
-msgid "Start and stop tracking with a project, an activity and an optional description"
-msgstr "Erfassung mit Projekt, Tätigkeit und optionaler Beschreibung starten und stoppen"
-
-#: data/de.example.Stempeluhr.metainfo.xml.in:16
+#: data/digital.fischers.stempeluhr.metainfo.xml.in:20
 msgid "Quick access to recently used combinations"
 msgstr "Schnellzugriff auf zuletzt verwendete Kombinationen"
 
-#: data/de.example.Stempeluhr.metainfo.xml.in:17
+#: data/digital.fischers.stempeluhr.metainfo.xml.in:21
 msgid "Stop from a notification, a keyboard shortcut or the command line"
 msgstr "Stoppen per Benachrichtigung, Tastenkürzel oder Kommandozeile"
 
-#: data/de.example.Stempeluhr.metainfo.xml.in:18
+#: data/digital.fischers.stempeluhr.metainfo.xml.in:22
 msgid "No background process: the app only runs while its window is open"
-msgstr "Kein Hintergrundprozess: Die App läuft nur, solange ihr Fenster offen ist"
+msgstr ""
+"Kein Hintergrundprozess: Die App läuft nur, solange ihr Fenster offen ist"
 
-#: data/de.example.Stempeluhr.metainfo.xml.in:39
+#: data/digital.fischers.stempeluhr.metainfo.xml.in:35
+msgid "Kimai"
+msgstr "Kimai"
+
+#: data/digital.fischers.stempeluhr.metainfo.xml.in:36
+msgid "time tracking"
+msgstr "Zeiterfassung"
+
+#: data/digital.fischers.stempeluhr.metainfo.xml.in:37
+msgid "timesheet"
+msgstr "Zeiterfassung"
+
+#: data/digital.fischers.stempeluhr.metainfo.xml.in:38
+msgid "clock"
+msgstr "Stempeluhr"
+
+#: data/digital.fischers.stempeluhr.metainfo.xml.in:42
+msgid "Tracking is running: project, activity and elapsed time"
+msgstr "Die Erfassung läuft: Projekt, Tätigkeit und vergangene Zeit"
+
+#: data/digital.fischers.stempeluhr.metainfo.xml.in:46
+msgid "Ready to start with a project, an activity and a description"
+msgstr "Bereit zum Starten mit Projekt, Tätigkeit und Beschreibung"
+"Erfassung mit Projekt, Tätigkeit und optionaler Beschreibung starten und "
+"stoppen"
+
+#: data/digital.fischers.stempeluhr.metainfo.xml.in:50
+msgid "The history of the last 30 days, grouped by day"
+msgstr "Der Verlauf der letzten 30 Tage, nach Tagen gruppiert"
+
+#: data/digital.fischers.stempeluhr.metainfo.xml.in:69
 msgid "First release."
 msgstr "Erste Veröffentlichung."
 
-#: src/application.rs:567
+#: src/application.rs:592
 msgid "Already running — it was started elsewhere."
 msgstr "Läuft bereits – wurde woanders gestartet."
 
-#: src/application.rs:568
+#: src/application.rs:593
 msgid "Already stopped elsewhere."
 msgstr "Wurde bereits woanders gestoppt."
 
-#: src/application.rs:569
+#: src/application.rs:594
 msgid "Nothing is running."
 msgstr "Es läuft nichts."
 
-#: src/application.rs:572
+#: src/application.rs:597
 msgid "Choose a project and activity, then press Start."
 msgstr "Wähle ein Projekt und eine Tätigkeit und drücke dann auf Start."
 
-#: src/application.rs:604
+#: src/application.rs:629
 msgid "Time tracking"
 msgstr "Zeiterfassung"
 
-#: src/application.rs:655
+#: src/application.rs:680
 msgid "Time tracking is running"
 msgstr "Zeiterfassung läuft"
 
-#: src/application.rs:662 src/window.rs:659 src/window.rs:865
-#: src/ui/window.blp:506
+#: src/application.rs:687 src/window.rs:706 src/window.rs:912
+#: src/ui/window.blp:505
 msgid "Stop"
 msgstr "Stopp"
 
-#: src/application.rs:698
+#: src/application.rs:721
+msgid "The Stempeluhr authors"
+msgstr "Die Stempeluhr-Autoren"
+
+#: src/application.rs:723
 msgid "Start and stop Kimai time tracking."
 msgstr "Kimai-Zeiterfassung starten und stoppen."
 
@@ -120,8 +167,11 @@ msgid "The address must start with https:// or http://."
 msgstr "Die Adresse muss mit https:// oder http:// beginnen."
 
 #: src/connect_dialog.rs:103
-msgid "Don’t put a user name or password in the address. Use an API token instead."
-msgstr "Gib keinen Benutzernamen und kein Passwort in der Adresse an. Verwende stattdessen ein API-Token."
+msgid ""
+"Don’t put a user name or password in the address. Use an API token instead."
+msgstr ""
+"Gib keinen Benutzernamen und kein Passwort in der Adresse an. Verwende "
+"stattdessen ein API-Token."
 
 #: src/connect_dialog.rs:104
 msgid "This doesn’t look like a valid address."
@@ -132,8 +182,12 @@ msgid "Please enter your API token."
 msgstr "Bitte gib dein API-Token ein."
 
 #: src/connect_dialog.rs:152
-msgid "The token couldn’t be saved to the system keyring, so it can’t be kept safely."
-msgstr "Das Token konnte nicht im System-Schlüsselbund gespeichert werden und lässt sich daher nicht sicher aufbewahren."
+msgid ""
+"The token couldn’t be saved to the system keyring, so it can’t be kept "
+"safely."
+msgstr ""
+"Das Token konnte nicht im System-Schlüsselbund gespeichert werden und lässt "
+"sich daher nicht sicher aufbewahren."
 
 #: src/connect_dialog.rs:160
 #, rust-format
@@ -145,8 +199,12 @@ msgid "Can’t connect to the server. Check your internet connection."
 msgstr "Keine Verbindung zum Server. Prüfe deine Internetverbindung."
 
 #: src/messages.rs:13
-msgid "The server address couldn’t be found. Check the address and your internet connection."
-msgstr "Die Serveradresse wurde nicht gefunden. Prüfe die Adresse und deine Internetverbindung."
+msgid ""
+"The server address couldn’t be found. Check the address and your internet "
+"connection."
+msgstr ""
+"Die Serveradresse wurde nicht gefunden. Prüfe die Adresse und deine "
+"Internetverbindung."
 
 #: src/messages.rs:15
 msgid "The server took too long to respond."
@@ -158,7 +216,9 @@ msgstr "Das Sicherheitszertifikat des Servers konnte nicht überprüft werden."
 
 #: src/messages.rs:18
 msgid "The access token was rejected. It may be invalid or revoked."
-msgstr "Das Zugangs-Token wurde abgelehnt. Es ist möglicherweise ungültig oder widerrufen."
+msgstr ""
+"Das Zugangs-Token wurde abgelehnt. Es ist möglicherweise ungültig oder "
+"widerrufen."
 
 #: src/messages.rs:20
 msgid "Nothing was found at this address. Check the server address."
@@ -174,13 +234,18 @@ msgid "Kimai rejected the request."
 msgstr "Kimai hat die Anfrage abgelehnt."
 
 #: src/messages.rs:27
-msgid "The server redirected the request. Check the server address, preferably use https://."
-msgstr "Der Server hat die Anfrage umgeleitet. Prüfe die Serveradresse, am besten mit https://."
+msgid ""
+"The server redirected the request. Check the server address, preferably use "
+"https://."
+msgstr ""
+"Der Server hat die Anfrage umgeleitet. Prüfe die Serveradresse, am besten "
+"mit https://."
 
 #: src/messages.rs:30
 #, rust-format
 msgid "The server reported an internal error ({code}). Try again later."
-msgstr "Der Server meldet einen internen Fehler ({code}). Versuche es später erneut."
+msgstr ""
+"Der Server meldet einen internen Fehler ({code}). Versuche es später erneut."
 
 #: src/messages.rs:34
 #, rust-format
@@ -188,8 +253,11 @@ msgid "The server refused the request ({code})."
 msgstr "Der Server hat die Anfrage abgelehnt ({code})."
 
 #: src/messages.rs:38
-msgid "The server’s answer wasn’t understood. Is this the address of a Kimai server?"
-msgstr "Die Antwort des Servers wurde nicht verstanden. Ist das die Adresse eines Kimai-Servers?"
+msgid ""
+"The server’s answer wasn’t understood. Is this the address of a Kimai server?"
+msgstr ""
+"Die Antwort des Servers wurde nicht verstanden. Ist das die Adresse eines "
+"Kimai-Servers?"
 
 #: src/messages.rs:40
 msgid "Something went wrong while contacting the server."
@@ -209,10 +277,14 @@ msgid "Disconnect from Kimai?"
 msgstr "Von Kimai trennen?"
 
 #: src/preferences.rs:87
-msgid "The access token is removed from this device. Your time tracking in Kimai is not affected."
-msgstr "Das Zugangs-Token wird von diesem Gerät entfernt. Deine Zeiterfassung in Kimai bleibt unberührt."
+msgid ""
+"The access token is removed from this device. Your time tracking in Kimai is "
+"not affected."
+msgstr ""
+"Das Zugangs-Token wird von diesem Gerät entfernt. Deine Zeiterfassung in "
+"Kimai bleibt unberührt."
 
-#: src/preferences.rs:89 src/edit_dialog.rs:380
+#: src/preferences.rs:89 src/edit_dialog.rs:365
 msgid "_Cancel"
 msgstr "_Abbrechen"
 
@@ -224,46 +296,53 @@ msgstr "_Trennen"
 msgid "Toggle time tracking"
 msgstr "Zeiterfassung umschalten"
 
-#: src/window.rs:399
+#: src/window.rs:446
 #, rust-format
 msgid "Couldn’t read the access token from the keyring: {error}"
-msgstr "Das Zugangs-Token konnte nicht aus dem Schlüsselbund gelesen werden: {error}"
+msgstr ""
+"Das Zugangs-Token konnte nicht aus dem Schlüsselbund gelesen werden: {error}"
 
-#: src/window.rs:524
+#: src/window.rs:571
 #, rust-format
 msgid "{problem} Showing the state from {time}."
 msgstr "{problem} Angezeigt wird der Stand von {time}."
 
-#: src/window.rs:630
+#: src/window.rs:677
 msgid "Not confirmed"
 msgstr "Unbestätigt"
 
-#: src/window.rs:636
+#: src/window.rs:683
 #, rust-format
-msgid "{n} more entry is running in Kimai. Stopping affects only the one shown."
-msgid_plural "{n} more entries are running in Kimai. Stopping affects only the one shown."
-msgstr[0] "Ein weiterer Eintrag läuft in Kimai. Das Stoppen betrifft nur den angezeigten."
-msgstr[1] "{n} weitere Einträge laufen in Kimai. Das Stoppen betrifft nur den angezeigten."
+msgid ""
+"{n} more entry is running in Kimai. Stopping affects only the one shown."
+msgid_plural ""
+"{n} more entries are running in Kimai. Stopping affects only the one shown."
+msgstr[0] ""
+"Ein weiterer Eintrag läuft in Kimai. Das Stoppen betrifft nur den "
+"angezeigten."
+msgstr[1] ""
+"{n} weitere Einträge laufen in Kimai. Das Stoppen betrifft nur den "
+"angezeigten."
 
-#: src/window.rs:657
+#: src/window.rs:704
 msgid "Stopping…"
 msgstr "Wird gestoppt …"
 
-#: src/window.rs:772
+#: src/window.rs:819
 msgid "Recorded"
 msgstr "Erfasst"
 
-#: src/window.rs:778
+#: src/window.rs:825
 #, rust-format
 msgid "Recorded {time}"
 msgstr "{time} erfasst"
 
-#: src/window.rs:1072
+#: src/window.rs:1119
 #, rust-format
 msgid "Couldn’t load projects. {reason}"
 msgstr "Projekte konnten nicht geladen werden. {reason}"
 
-#: src/window.rs:1163
+#: src/window.rs:1210
 #, rust-format
 msgid "Couldn’t load activities. {reason}"
 msgstr "Tätigkeiten konnten nicht geladen werden. {reason}"
@@ -277,85 +356,93 @@ msgstr "Aktualisieren"
 msgid "History"
 msgstr "Verlauf"
 
-#: src/ui/window.blp:54 src/ui/window.blp:75
+#: src/ui/window.blp:54 src/ui/window.blp:74
 msgid "Recent"
 msgstr "Zuletzt verwendet"
 
-#: src/ui/window.blp:84 src/ui/window.blp:86
+#: src/ui/window.blp:83 src/ui/window.blp:85
 msgid "Main Menu"
 msgstr "Hauptmenü"
 
-#: src/ui/window.blp:93
+#: src/ui/window.blp:92
 msgid "Retry"
 msgstr "Erneut versuchen"
 
-#: src/ui/window.blp:110 src/ui/history-page.blp:25
+#: src/ui/window.blp:109 src/ui/history-page.blp:25
 msgid "Loading"
 msgstr "Wird geladen"
 
-#: src/ui/window.blp:140
+#: src/ui/window.blp:139
 msgid "Welcome"
 msgstr "Willkommen"
 
-#: src/ui/window.blp:150
+#: src/ui/window.blp:149
 msgid "Connect your Kimai account to start and stop time tracking from here."
-msgstr "Verbinde dein Kimai-Konto, um die Zeiterfassung von hier aus zu starten und zu stoppen."
+msgstr ""
+"Verbinde dein Kimai-Konto, um die Zeiterfassung von hier aus zu starten und "
+"zu stoppen."
 
-#: src/ui/window.blp:160 src/ui/connect-dialog.blp:5
+#: src/ui/window.blp:159 src/ui/connect-dialog.blp:5
 msgid "Connect to Kimai"
 msgstr "Mit Kimai verbinden"
 
-#: src/ui/window.blp:200
+#: src/ui/window.blp:199
 msgid "Sign-in Required"
 msgstr "Anmeldung erforderlich"
 
-#: src/ui/window.blp:210
+#: src/ui/window.blp:209
 msgid "Kimai rejected the access token. It may have expired or been revoked."
-msgstr "Kimai hat das Zugangs-Token abgelehnt. Es ist möglicherweise abgelaufen oder widerrufen worden."
+msgstr ""
+"Kimai hat das Zugangs-Token abgelehnt. Es ist möglicherweise abgelaufen oder "
+"widerrufen worden."
 
-#: src/ui/window.blp:220
+#: src/ui/window.blp:219
 msgid "Sign In Again"
 msgstr "Erneut anmelden"
 
-#: src/ui/window.blp:260
+#: src/ui/window.blp:259
 msgid "Can’t Reach Kimai"
 msgstr "Kimai nicht erreichbar"
 
-#: src/ui/window.blp:280 src/ui/history-page.blp:56
+#: src/ui/window.blp:279 src/ui/history-page.blp:56
 msgid "Try Again"
 msgstr "Erneut versuchen"
 
-#: src/ui/window.blp:325 src/ui/window.blp:328
+#: src/ui/window.blp:324 src/ui/window.blp:327
 msgid "Start tracking"
 msgstr "Erfassung starten"
 
-#: src/ui/window.blp:348 src/ui/window.blp:351 src/ui/edit-dialog.blp:37
+#: src/ui/window.blp:347 src/ui/window.blp:350 src/ui/edit-dialog.blp:37
 msgid "Project"
 msgstr "Projekt"
 
-#: src/ui/window.blp:363 src/ui/window.blp:366 src/ui/edit-dialog.blp:43
+#: src/ui/window.blp:362 src/ui/window.blp:365 src/ui/edit-dialog.blp:43
 msgid "Activity"
 msgstr "Tätigkeit"
 
-#: src/ui/window.blp:377 src/ui/window.blp:382
+#: src/ui/window.blp:376 src/ui/window.blp:381
 msgid "Description (optional)"
 msgstr "Beschreibung (optional)"
 
-#: src/ui/window.blp:532
+#: src/ui/window.blp:531
 msgid "_Preferences"
 msgstr "_Einstellungen"
 
-#: src/ui/window.blp:537
+#: src/ui/window.blp:536
 msgid "_Keyboard Shortcuts"
 msgstr "_Tastenkürzel"
 
-#: src/ui/window.blp:542
+#: src/ui/window.blp:541
 msgid "_About Stempeluhr"
 msgstr "_Info zu Stempeluhr"
 
 #: src/ui/connect-dialog.blp:26
-msgid "Enter the address of your Kimai server and an API token. You can create a token in Kimai under your profile, in the API section."
-msgstr "Gib die Adresse deines Kimai-Servers und ein API-Token ein. Ein Token erstellst du in Kimai in deinem Profil im Bereich „API“."
+msgid ""
+"Enter the address of your Kimai server and an API token. You can create a "
+"token in Kimai under your profile, in the API section."
+msgstr ""
+"Gib die Adresse deines Kimai-Servers und ein API-Token ein. Ein Token "
+"erstellst du in Kimai in deinem Profil im Bereich „API“."
 
 #: src/ui/connect-dialog.blp:37
 msgid "Server address"
@@ -386,8 +473,12 @@ msgid "Start Action"
 msgstr "Start-Aktion"
 
 #: src/ui/preferences-dialog.blp:34
-msgid "What happens when tracking is started with a keyboard shortcut or from outside the window."
-msgstr "Was passiert, wenn die Erfassung per Tastenkürzel oder von außerhalb des Fensters gestartet wird."
+msgid ""
+"What happens when tracking is started with a keyboard shortcut or from "
+"outside the window."
+msgstr ""
+"Was passiert, wenn die Erfassung per Tastenkürzel oder von außerhalb des "
+"Fensters gestartet wird."
 
 #: src/ui/preferences-dialog.blp:37
 msgid "Behavior"
@@ -406,8 +497,12 @@ msgid "Global Shortcut"
 msgstr "Globales Tastenkürzel"
 
 #: src/ui/preferences-dialog.blp:49
-msgid "Works only while the app is running. The system asks you to confirm and choose the keys."
-msgstr "Funktioniert nur, solange die App läuft. Das System fragt nach einer Bestätigung und der Tastenkombination."
+msgid ""
+"Works only while the app is running. The system asks you to confirm and "
+"choose the keys."
+msgstr ""
+"Funktioniert nur, solange die App läuft. Das System fragt nach einer "
+"Bestätigung und der Tastenkombination."
 
 #: src/ui/preferences-dialog.blp:52
 msgid "Toggle Tracking from Anywhere"
@@ -453,51 +548,51 @@ msgstr "Heute"
 msgid "Yesterday"
 msgstr "Gestern"
 
-#: src/edit_dialog.rs:309
+#: src/edit_dialog.rs:294
 msgid "Nothing to save."
 msgstr "Nichts zu speichern."
 
-#: src/edit_dialog.rs:316
+#: src/edit_dialog.rs:301
 msgid "Please choose a project."
 msgstr "Bitte wähle ein Projekt."
 
-#: src/edit_dialog.rs:322
+#: src/edit_dialog.rs:307
 msgid "Please choose an activity."
 msgstr "Bitte wähle eine Tätigkeit."
 
-#: src/edit_dialog.rs:329
+#: src/edit_dialog.rs:314
 msgid "The start time isn’t valid. Use hh:mm."
 msgstr "Die Startzeit ist ungültig. Verwende hh:mm."
 
-#: src/edit_dialog.rs:335
+#: src/edit_dialog.rs:320
 msgid "The end time isn’t valid. Use hh:mm."
 msgstr "Die Endzeit ist ungültig. Verwende hh:mm."
 
-#: src/edit_dialog.rs:338
+#: src/edit_dialog.rs:323
 msgid "The end must be after the start."
 msgstr "Das Ende muss nach dem Beginn liegen."
 
-#: src/edit_dialog.rs:358 src/edit_dialog.rs:391
+#: src/edit_dialog.rs:343 src/edit_dialog.rs:376
 msgid "Not connected."
 msgstr "Nicht verbunden."
 
-#: src/edit_dialog.rs:369
+#: src/edit_dialog.rs:354
 msgid "Saved."
 msgstr "Gespeichert."
 
-#: src/edit_dialog.rs:377
+#: src/edit_dialog.rs:362
 msgid "Delete this entry?"
 msgstr "Diesen Eintrag löschen?"
 
-#: src/edit_dialog.rs:378
+#: src/edit_dialog.rs:363
 msgid "It is permanently removed from Kimai."
 msgstr "Er wird dauerhaft aus Kimai entfernt."
 
-#: src/edit_dialog.rs:380
+#: src/edit_dialog.rs:365
 msgid "_Delete"
 msgstr "_Löschen"
 
-#: src/edit_dialog.rs:397
+#: src/edit_dialog.rs:382
 msgid "Entry deleted."
 msgstr "Eintrag gelöscht."
 
@@ -534,6 +629,5 @@ msgid "End (hh:mm)"
 msgstr "Ende (hh:mm)"
 
 #: src/ui/edit-dialog.blp:77
-
 msgid "Delete Entry…"
 msgstr "Eintrag löschen …"

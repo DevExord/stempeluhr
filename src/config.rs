@@ -4,7 +4,7 @@
 
 pub const APP_ID: &str = match option_env!("STEMPELUHR_APP_ID") {
     Some(v) => v,
-    None => "de.example.Stempeluhr",
+    None => "digital.fischers.stempeluhr",
 };
 pub const VERSION: &str = match option_env!("STEMPELUHR_VERSION") {
     Some(v) => v,
@@ -22,4 +22,4 @@ pub const RESOURCES_FILE: &str = match option_env!("STEMPELUHR_RESOURCES_FILE") 
     Some(v) => v,
     None => "/usr/share/stempeluhr/stempeluhr.gresource",
 };
-pub const RESOURCE_PREFIX: &str = "/de/example/Stempeluhr";
+pub const RESOURCE_PREFIX: &str = "/digital/fischers/stempeluhr";

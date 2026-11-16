@@ -15,7 +15,7 @@ mod imp {
     use super::*;
 
     #[derive(CompositeTemplate, Default)]
-    #[template(resource = "/de/example/Stempeluhr/ui/connect-dialog.ui")]
+    #[template(resource = "/digital/fischers/stempeluhr/ui/connect-dialog.ui")]
     pub struct ConnectDialog {
         #[template_child]
         pub url_row: TemplateChild<adw::EntryRow>,

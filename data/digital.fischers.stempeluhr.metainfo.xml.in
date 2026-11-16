@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>digital.fischers.stempeluhr</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0-or-later</project_license>
+  <name>Stempeluhr</name>
+  <summary>Start and stop Kimai time tracking</summary>
+  <developer id="digital.fischers">
+    <name translate="no">Sören</name>
+  </developer>
+  <branding>
+    <color type="primary" scheme_preference="light">#99c1f1</color>
+    <color type="primary" scheme_preference="dark">#1c71d8</color>
+  </branding>
+  <description>
+    <p>Stempeluhr is a small companion for Kimai. It starts and stops time tracking and shows what is running right now, nothing more.</p>
+    <p>Kimai is always the source of truth: when tracking is started or stopped somewhere else, the app notices and never shows an outdated state. If the server can’t be reached, the last known state is clearly marked as unconfirmed.</p>
+    <ul>
+      <li>Start and stop tracking with a project, an activity and an optional description</li>
+      <li>Quick access to recently used combinations</li>
+      <li>Stop from a notification, a keyboard shortcut or the command line</li>
+      <li>No background process: the app only runs while its window is open</li>
+    </ul>
+  </description>
+  <launchable type="desktop-id">digital.fischers.stempeluhr.desktop</launchable>
+  <url type="homepage">https://github.com/Importantus/stempeluhr</url>
+  <url type="bugtracker">https://github.com/Importantus/stempeluhr/issues</url>
+  <url type="vcs-browser">https://github.com/Importantus/stempeluhr</url>
+  <translation type="gettext">stempeluhr</translation>
+  <categories>
+    <category>Office</category>
+    <category>ProjectManagement</category>
+  </categories>
+  <keywords>
+    <keyword>Kimai</keyword>
+    <keyword>time tracking</keyword>
+    <keyword>timesheet</keyword>
+    <keyword>clock</keyword>
+  </keywords>
+  <screenshots>
+    <screenshot type="default">
+      <caption>Tracking is running: project, activity and elapsed time</caption>
+      <image type="source">https://raw.githubusercontent.com/Importantus/stempeluhr/main/data/screenshots/running.png</image>
+    </screenshot>
+    <screenshot>
+      <caption>Ready to start with a project, an activity and a description</caption>
+      <image type="source">https://raw.githubusercontent.com/Importantus/stempeluhr/main/data/screenshots/idle.png</image>
+    </screenshot>
+    <screenshot>
+      <caption>The history of the last 30 days, grouped by day</caption>
+      <image type="source">https://raw.githubusercontent.com/Importantus/stempeluhr/main/data/screenshots/history.png</image>
+    </screenshot>
+  </screenshots>
+  <content_rating type="oars-1.1" />
+  <requires>
+    <display_length compare="ge">360</display_length>
+  </requires>
+  <supports>
+    <control>keyboard</control>
+    <control>pointing</control>
+    <control>touch</control>
+  </supports>
+  <provides>
+    <binary>stempeluhr</binary>
+  </provides>
+  <releases>
+    <release version="0.1.0" date="2026-11-15">
+      <description>
+        <p>First release.</p>
+      </description>
+    </release>
+  </releases>
+</component>

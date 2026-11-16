@@ -107,7 +107,7 @@ mod imp {
     use super::*;
 
     #[derive(CompositeTemplate, Default)]
-    #[template(resource = "/de/example/Stempeluhr/ui/window.ui")]
+    #[template(resource = "/digital/fischers/stempeluhr/ui/window.ui")]
     pub struct StempeluhrWindow {
         #[template_child]
         pub toast_overlay: TemplateChild<adw::ToastOverlay>,

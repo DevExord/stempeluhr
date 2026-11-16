@@ -6,7 +6,7 @@ use std::collections::HashMap;
 
 use crate::runtime;
 
-const SCHEMA: &str = "de.example.Stempeluhr.Token";
+const SCHEMA: &str = "digital.fischers.stempeluhr.Token";
 
 fn attributes() -> HashMap<&'static str, &'static str> {
     HashMap::from([("xdg:schema", SCHEMA)])

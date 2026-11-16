@@ -8,7 +8,7 @@ project(
 i18n = import('i18n')
 gnome = import('gnome')
 
-app_id = 'de.example.Stempeluhr'
+app_id = 'digital.fischers.stempeluhr'
 gettext_package = meson.project_name()
 prefix = get_option('prefix')
 bindir = prefix / get_option('bindir')

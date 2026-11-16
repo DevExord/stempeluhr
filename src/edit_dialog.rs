@@ -19,7 +19,7 @@ mod imp {
     use super::*;
 
     #[derive(CompositeTemplate, Default)]
-    #[template(resource = "/de/example/Stempeluhr/ui/edit-dialog.ui")]
+    #[template(resource = "/digital/fischers/stempeluhr/ui/edit-dialog.ui")]
     pub struct EditDialog {
         #[template_child]
         pub save_button: TemplateChild<gtk::Button>,

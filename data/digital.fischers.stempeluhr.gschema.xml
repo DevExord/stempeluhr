@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist >
-  <enum id="de.example.Stempeluhr.StartBehavior">
+  <enum id="digital.fischers.stempeluhr.StartBehavior">
     <value nick="last" value="0"/>
     <value nick="window" value="1"/>
   </enum>
-  <schema id="de.example.Stempeluhr" path="/de/example/Stempeluhr/">
+  <schema id="digital.fischers.stempeluhr" path="/digital/fischers/stempeluhr/">
     <key name="server-url" type="s">
       <default>''</default>
       <summary>Kimai server address</summary>
@@ -20,7 +20,7 @@
       <summary>Last used activity</summary>
       <description>Kimai ID of the activity most recently used to start tracking. 0 if none.</description>
     </key>
-    <key name="start-behavior" enum="de.example.Stempeluhr.StartBehavior">
+    <key name="start-behavior" enum="digital.fischers.stempeluhr.StartBehavior">
       <default>'last'</default>
       <summary>Behavior of the start action</summary>
       <description>Whether starting by shortcut or action uses the last project and activity, or opens the window to choose.</description>

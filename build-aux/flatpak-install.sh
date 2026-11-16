@@ -14,7 +14,7 @@ else
   FB="flatpak run --filesystem=home --talk-name=org.freedesktop.Flatpak --command=flatpak-builder org.gnome.Builder"
 fi
 $FB --force-clean --disable-rofiles-fuse --state-dir=.flatpak-builder \
-    --repo=_repo _flatpak build-aux/de.example.Stempeluhr.local.yaml
-flatpak build-bundle _repo stempeluhr.flatpak de.example.Stempeluhr
+    --repo=_repo _flatpak build-aux/digital.fischers.stempeluhr.local.yaml
+flatpak build-bundle _repo stempeluhr.flatpak digital.fischers.stempeluhr
 flatpak install --user --reinstall -y --noninteractive stempeluhr.flatpak
-echo "Installed. Run: flatpak run de.example.Stempeluhr"
+echo "Installed. Run: flatpak run digital.fischers.stempeluhr"

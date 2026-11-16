@@ -1,7 +1,7 @@
 desktop_conf = configuration_data()
 desktop_conf.set('app_id', app_id)
 desktop_in = configure_file(
-  input: 'de.example.Stempeluhr.desktop.in.in',
+  input: 'digital.fischers.stempeluhr.desktop.in.in',
   output: app_id + '.desktop.in',
   configuration: desktop_conf,
 )
@@ -19,7 +19,7 @@ if desktop_validate.found()
 endif
 
 metainfo_file = i18n.merge_file(
-  input: 'de.example.Stempeluhr.metainfo.xml.in',
+  input: 'digital.fischers.stempeluhr.metainfo.xml.in',
   output: app_id + '.metainfo.xml',
   type: 'xml',
   po_dir: '../po',
@@ -32,7 +32,7 @@ if appstreamcli.found()
 endif
 
 install_data(
-  'de.example.Stempeluhr.gschema.xml',
+  'digital.fischers.stempeluhr.gschema.xml',
   install_dir: datadir / 'glib-2.0' / 'schemas',
 )
 compile_schemas = find_program('glib-compile-schemas', required: false)
@@ -49,17 +49,17 @@ service_conf = configuration_data()
 service_conf.set('app_id', app_id)
 service_conf.set('bindir', bindir)
 configure_file(
-  input: 'de.example.Stempeluhr.service.in',
+  input: 'digital.fischers.stempeluhr.service.in',
   output: app_id + '.service',
   configuration: service_conf,
   install_dir: datadir / 'dbus-1' / 'services',
 )
 
 install_data(
-  'icons/hicolor/scalable/apps/de.example.Stempeluhr.svg',
+  'icons/hicolor/scalable/apps/digital.fischers.stempeluhr.svg',
   install_dir: datadir / 'icons' / 'hicolor' / 'scalable' / 'apps',
 )
 install_data(
-  'icons/hicolor/symbolic/apps/de.example.Stempeluhr-symbolic.svg',
+  'icons/hicolor/symbolic/apps/digital.fischers.stempeluhr-symbolic.svg',
   install_dir: datadir / 'icons' / 'hicolor' / 'symbolic' / 'apps',
 )

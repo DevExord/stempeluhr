@@ -1,4 +1,4 @@
-app-id: de.example.Stempeluhr
+app-id: digital.fischers.stempeluhr
 runtime: org.gnome.Platform
 runtime-version: '51'
 sdk: org.gnome.Sdk
