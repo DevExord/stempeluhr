@@ -2,7 +2,7 @@
 
 > Moin! Wie man sicherlich sieht, ist die App völlig gevibecoded. Es handelt sich hier also nicht um maintainte und zugängliche Open-Source-Software für die allgemeine Nutzung, sondern nur um ein kleines Tool, das ich basteln gelassen habe, um in meinen eigenen Workflow zu passen. Wenn es das auch für dich tut, feel free, die App zu installieren, aber erwarte nicht zu viel :)
 
-<p align="center"><img src="data/screenshots/running.png" alt="Stempeluhr while tracking" width="380"></p>
+<p align="center"><img src="data/screenshots/running.png" alt="Stempeluhr while tracking"></p>
 
 A small, quiet GNOME app that starts and stops time tracking in
 [Kimai](https://www.kimai.org/). Plus a plain history of the last 30 days where
