@@ -28,6 +28,13 @@ enum Phase: Equatable {
     case connected
 }
 
+/// A recently used project + activity pair, offered as a one-click start.
+struct QuickStart: Identifiable, Equatable {
+    var project: KimaiRef
+    var activity: KimaiRef
+    var id: String { "\(project.id)-\(activity.id)" }
+}
+
 /// The app's single source of truth for the UI. Holds only what the server
 /// confirmed; when the server can't be reached the last state is shown frozen
 /// and marked "Not confirmed".
@@ -55,6 +62,11 @@ final class AppStore: ObservableObject {
     @Published var selectedProject: Int? { didSet { persistSelection() } }
     @Published var selectedActivity: Int? { didSet { persistSelection() } }
     @Published private(set) var recent: [Timesheet] = []
+
+    // Overview: recent combos + finished-time totals (live parts added below).
+    @Published private(set) var quickStarts: [QuickStart] = []
+    @Published private(set) var todayFinished: TimeInterval = 0
+    @Published private(set) var weekFinished: TimeInterval = 0
 
     private var client: KimaiClient?
     private var pollTask: Task<Void, Never>?
@@ -94,6 +106,39 @@ final class AppStore: ObservableObject {
 
     var isRunning: Bool { tracking.runningTimesheet != nil }
 
+    /// Calendar with Monday as the first weekday (Kimai/European weeks).
+    private var calendar: Calendar {
+        var c = Calendar(identifier: .gregorian)
+        c.firstWeekday = 2
+        c.timeZone = .current
+        return c
+    }
+
+    var startOfToday: Date { calendar.startOfDay(for: now) }
+
+    var startOfWeek: Date {
+        let comps = calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: now)
+        return calendar.date(from: comps) ?? startOfToday
+    }
+
+    /// Total tracked today: finished entries begun today plus the live entry
+    /// (attributed, like finished ones, to the day it began).
+    var todayTotal: TimeInterval {
+        var t = todayFinished
+        if let ts = tracking.runningTimesheet, ts.begin >= startOfToday {
+            t += max(0, serverNow.timeIntervalSince(ts.begin))
+        }
+        return t
+    }
+
+    var weekTotal: TimeInterval {
+        var t = weekFinished
+        if let ts = tracking.runningTimesheet, ts.begin >= startOfWeek {
+            t += max(0, serverNow.timeIntervalSince(ts.begin))
+        }
+        return t
+    }
+
     // MARK: - Lifecycle
 
     private func bootstrap() async {
@@ -101,6 +146,7 @@ final class AppStore: ObservableObject {
         await refresh(reason: .startup)
         await loadProjects()
         if let p = selectedProject { await loadActivities(project: p) }
+        await loadOverview()
         startPolling()
     }
 
@@ -120,6 +166,7 @@ final class AppStore: ObservableObject {
                 try? await Task.sleep(nanoseconds: 45_000_000_000)
                 if Task.isCancelled { break }
                 await self?.refresh(reason: .timer)
+                await self?.loadOverview()
             }
         }
     }
@@ -152,6 +199,7 @@ final class AppStore: ObservableObject {
             await refresh(reason: .startup)
             await loadProjects()
             if let p = selectedProject { await loadActivities(project: p) }
+            await loadOverview()
             startPolling()
             return true
         } catch {
@@ -172,6 +220,9 @@ final class AppStore: ObservableObject {
         projects = []
         activities = []
         recent = []
+        quickStarts = []
+        todayFinished = 0
+        weekFinished = 0
         serverURL = ""
     }
 
@@ -224,18 +275,58 @@ final class AppStore: ObservableObject {
         } catch { activities = [] }
     }
 
-    func loadRecent() async {
+    /// Fetches the last two weeks of finished entries and derives today's /
+    /// this week's totals plus the four most recent project·activity combos.
+    func loadOverview() async {
         guard let client else { return }
-        let since = Calendar.current.date(byAdding: .day, value: -30, to: Date()) ?? Date()
-        do { recent = Array((try await client.history(since: since)).prefix(8)) }
-        catch { /* ignore */ }
+        let since = calendar.date(byAdding: .day, value: -14, to: now) ?? startOfWeek
+        let entries: [Timesheet]
+        do { entries = try await client.history(since: since) }
+        catch { return } // keep previous overview on failure
+
+        let today = startOfToday, week = startOfWeek
+        todayFinished = entries.filter { $0.begin >= today }.reduce(0) { $0 + Self.duration($1) }
+        weekFinished = entries.filter { $0.begin >= week }.reduce(0) { $0 + Self.duration($1) }
+
+        var seen = Set<String>()
+        var quick: [QuickStart] = []
+        for t in entries { // history is newest-first
+            let q = QuickStart(project: t.project, activity: t.activity)
+            if seen.insert(q.id).inserted {
+                quick.append(q)
+                if quick.count == 4 { break }
+            }
+        }
+        quickStarts = quick
+    }
+
+    func refreshAll() async {
+        await refresh(reason: .manual)
+        await loadOverview()
+    }
+
+    private static func duration(_ t: Timesheet) -> TimeInterval {
+        guard let end = t.end else { return 0 }
+        return max(0, end.timeIntervalSince(t.begin))
     }
 
     // MARK: - Writes (never retried; server is re-checked afterwards)
 
     func start() async {
+        await start(project: selectedProject, activity: selectedActivity)
+    }
+
+    /// One-click start of a recent combo; also remembers it as the selection.
+    func quickStart(_ q: QuickStart) async {
+        selectedProject = q.project.id
+        selectedActivity = q.activity.id
+        await start(project: q.project.id, activity: q.activity.id)
+        if let p = selectedProject { await loadActivities(project: p) }
+    }
+
+    private func start(project: Int?, activity: Int?) async {
         guard let client, !busy else { return }
-        guard let p = selectedProject, let a = selectedActivity else {
+        guard let p = project, let a = activity else {
             lastError = "Pick a project and activity first"
             return
         }
@@ -253,6 +344,7 @@ final class AppStore: ObservableObject {
             lastError = (error as? KimaiError)?.errorDescription ?? error.localizedDescription
         }
         await refresh(reason: .write)
+        await loadOverview()
     }
 
     func stop() async {
@@ -271,6 +363,7 @@ final class AppStore: ObservableObject {
             lastError = error.localizedDescription
         }
         await refresh(reason: .write)
+        await loadOverview()
     }
 
     func toggle() async {

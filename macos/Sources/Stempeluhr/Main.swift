@@ -71,6 +71,34 @@ enum SelfTest {
             }
             log("active after: idle ✓")
 
+            // Overview: recent combos (with colours) + today/week totals.
+            var cal = Calendar(identifier: .gregorian); cal.firstWeekday = 2
+            let since = cal.date(byAdding: .day, value: -14, to: Date())!
+            let entries = try await client.history(since: since)
+            guard !entries.isEmpty else { print("✗ no finished history"); return false }
+
+            var seen = Set<String>(); var quick: [QuickStart] = []
+            for t in entries {
+                let q = QuickStart(project: t.project, activity: t.activity)
+                if seen.insert(q.id).inserted { quick.append(q); if quick.count == 4 { break } }
+            }
+            log("quick-start combos: \(quick.count)")
+            for q in quick {
+                log("  • \(Fmt.label(q.project)) · \(Fmt.label(q.activity))  colour \(q.project.color ?? "none")")
+            }
+            guard quick.contains(where: { $0.project.color != nil }) else {
+                print("✗ no colours came back on history entries"); return false
+            }
+
+            func dur(_ t: Timesheet) -> TimeInterval { t.end.map { max(0, $0.timeIntervalSince(t.begin)) } ?? 0 }
+            let startDay = cal.startOfDay(for: Date())
+            let weekComps = cal.dateComponents([.yearForWeekOfYear, .weekOfYear], from: Date())
+            let startWeek = cal.date(from: weekComps)!
+            let today = entries.filter { $0.begin >= startDay }.reduce(0) { $0 + dur($1) }
+            let week = entries.filter { $0.begin >= startWeek }.reduce(0) { $0 + dur($1) }
+            log("today total: \(Fmt.hm(today))   week total: \(Fmt.hm(week))")
+            guard week >= today else { print("✗ week total < today total"); return false }
+
             print("✓ self-test passed")
             return true
         } catch {

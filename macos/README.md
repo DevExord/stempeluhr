@@ -17,6 +17,11 @@ information as a menu-bar popover.)*
 - Click it for a small panel: the live elapsed time (computed from the server's
   `begin`, not counted up locally), the project · activity, and a big
   **Start / Stop** button.
+- **Totals** at the top: time tracked **today** and **this week** (they tick up
+  live while a timer runs).
+- **Quick start**: up to four buttons for your most recently used
+  project · activity combinations, each tinted with the project's Kimai colour.
+  One click starts that combo.
 - Pick a project and activity to start; the last choice is remembered.
 - **Kimai is the single source of truth.** The panel only shows what the server
   last confirmed. If the server can't be reached, the last state is shown and

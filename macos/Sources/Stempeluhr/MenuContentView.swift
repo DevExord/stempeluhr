@@ -21,6 +21,7 @@ struct MenuContentView: View {
 
     @ViewBuilder private var connected: some View {
         header
+        totalsStrip
         Divider()
         if store.isRunning {
             runningBody
@@ -29,6 +30,33 @@ struct MenuContentView: View {
         }
         Divider()
         footer
+    }
+
+    // MARK: - Totals
+
+    private var totalsStrip: some View {
+        HStack(spacing: 8) {
+            statTile("Today", Fmt.hm(store.todayTotal))
+            statTile("This week", Fmt.hm(store.weekTotal))
+        }
+        .padding(.horizontal, 12)
+        .padding(.bottom, 10)
+    }
+
+    private func statTile(_ label: String, _ value: String) -> some View {
+        VStack(alignment: .leading, spacing: 1) {
+            Text(label.uppercased())
+                .font(.caption2)
+                .foregroundStyle(.secondary)
+            Text(value)
+                .font(.system(.title3, design: .rounded))
+                .fontWeight(.semibold)
+                .monospacedDigit()
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(.vertical, 7)
+        .padding(.horizontal, 10)
+        .background(Color.primary.opacity(0.06), in: RoundedRectangle(cornerRadius: 8))
     }
 
     private var header: some View {
@@ -90,6 +118,10 @@ struct MenuContentView: View {
 
     private var idleBody: some View {
         VStack(alignment: .leading, spacing: 10) {
+            if !store.quickStarts.isEmpty {
+                quickStartSection
+                Divider()
+            }
             pickerRow(title: "Project") {
                 Picker("Project", selection: Binding(
                     get: { store.selectedProject ?? -1 },
@@ -128,6 +160,51 @@ struct MenuContentView: View {
         .padding(12)
     }
 
+    private var quickStartSection: some View {
+        VStack(alignment: .leading, spacing: 6) {
+            Text("QUICK START")
+                .font(.caption2)
+                .foregroundStyle(.secondary)
+            LazyVGrid(columns: [
+                GridItem(.flexible(), spacing: 6),
+                GridItem(.flexible(), spacing: 6),
+            ], spacing: 6) {
+                ForEach(store.quickStarts) { q in
+                    Button { Task { await store.quickStart(q) } } label: {
+                        quickStartLabel(q)
+                    }
+                    .buttonStyle(.plain)
+                    .disabled(store.busy)
+                }
+            }
+        }
+    }
+
+    private func quickStartLabel(_ q: QuickStart) -> some View {
+        let color = Color(hex: q.project.color) ?? .accentColor
+        return HStack(spacing: 6) {
+            Circle().fill(color).frame(width: 9, height: 9)
+            VStack(alignment: .leading, spacing: 0) {
+                Text(Fmt.label(q.project))
+                    .font(.caption).fontWeight(.medium)
+                    .lineLimit(1)
+                Text(Fmt.label(q.activity))
+                    .font(.caption2).foregroundStyle(.secondary)
+                    .lineLimit(1)
+            }
+            Spacer(minLength: 0)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(.vertical, 6)
+        .padding(.horizontal, 8)
+        .background(color.opacity(0.12), in: RoundedRectangle(cornerRadius: 8))
+        .overlay(
+            RoundedRectangle(cornerRadius: 8)
+                .strokeBorder(color.opacity(0.35), lineWidth: 1)
+        )
+        .contentShape(Rectangle())
+    }
+
     private func pickerRow<Content: View>(title: String, @ViewBuilder _ content: () -> Content) -> some View {
         HStack {
             Text(title)
@@ -151,7 +228,7 @@ struct MenuContentView: View {
                     .padding(.top, 8)
             }
             HStack(spacing: 14) {
-                Button(action: { Task { await store.refresh(reason: .manual) } }) {
+                Button(action: { Task { await store.refreshAll() } }) {
                     Image(systemName: "arrow.clockwise")
                 }
                 .help("Refresh")
